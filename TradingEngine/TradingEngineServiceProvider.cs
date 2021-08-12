@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TradingEngineServer.Core
+namespace TradingEngine.Core
 {
-    public static class TradingEngineServerServiceProvider
+    public static class TradingEngineServiceProvider
     {
         public static IServiceProvider ServiceProvider { get; set; }
     }

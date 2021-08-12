@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TradingEngineServer.Core.Configuration
+namespace TradingEngine.Core.Configuration
 {
-    class TradingEngineServerConfiguration
+    public class TradingEngineServerConfiguration
     {
         public TradingEngineServerSettings TradingEngineServerSettings { get; set; }
     }
 
-    class TradingEngineServerSettings
+    public class TradingEngineServerSettings
     {
         public int Port { get; set; }
     }

@@ -4,10 +4,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TradingEngineServer.Core
+namespace TradingEngine.Core
 {
-    interface ITrandingEngineServer
+    interface ITradingEngine
     {
-        Task Run(CancellationToken token);
+        Task RunAsync(CancellationToken token);
     }
 }
