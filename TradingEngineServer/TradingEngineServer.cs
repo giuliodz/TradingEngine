@@ -7,30 +7,32 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 using TradingEngineServer.Core.Configuration;
+using TradingEngineServer.Logging;
 
 namespace TradingEngineServer.Core
 
 {
     sealed class TradingEngineServer : BackgroundService, ITrandingEngineServer
     {
-        private readonly ILogger<TradingEngineServer> _logger;
-        private readonly TradingEngineServerConfiguration _tradingEnginServerConfiguration;
-        public TradingEngineServer(ILogger<TradingEngineServer> logger, IOptions<TradingEngineServerConfiguration> config)
+        private readonly IOptions<TradingEngineServerConfiguration> _engineConfiguration;
+        private readonly ITextLogger _logger;
+        public TradingEngineServer(IOptions<TradingEngineServerConfiguration> engineConfiguration,
+            ITextLogger textLogger)
         {
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-            _tradingEnginServerConfiguration = config.Value ?? throw new ArgumentNullException(nameof(config));
+            _engineConfiguration = engineConfiguration ?? throw new ArgumentNullException(nameof(engineConfiguration));
+            _logger = textLogger ?? throw new ArgumentNullException(nameof(textLogger));
         }
 
         public Task Run(CancellationToken token) => ExecuteAsync(token);
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation($"Starting {nameof(TradingEngineServer)}");
+            _logger.Information(nameof(TradingEngineServer), "Starting Trading Engine");
             while(!stoppingToken.IsCancellationRequested)
             {
 
             }
-            _logger.LogInformation($"Stopped {nameof(TradingEngineServer)}");
+            _logger.Information(nameof(TradingEngineServer), "Stopping Trading Engine");
             return Task.CompletedTask;
         }
     }
