@@ -32,6 +32,9 @@ namespace TradingEngine.Logging
             _ = Task.Run(() => LogAsync(fullLogName, _logBlock, _logTaskCancellationSource.Token));
         }
 
+        /*
+         * Function that logs something to file.
+         */
         private static async Task LogAsync(string fullLogPath, BufferBlock<LogInformation> logQueue, CancellationToken token)
         {
             using var fs = new FileStream(fullLogPath, FileMode.CreateNew, FileAccess.Write, FileShare.Read);
